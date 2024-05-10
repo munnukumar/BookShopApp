@@ -43,10 +43,10 @@ Cart.belongsTo(User);
 Cart.belongsToMany(Product, {through: CartItem});
 Product.belongsToMany(Cart, {through: CartItem});
 
-const PORT = 3000;
+const PORT = 8000;
 sequelize
-.sync({ force: true })
-// .sync()
+// .sync({ force: true })
+.sync()
 .then(result => {
     return User.findByPk(1)
 })
@@ -56,13 +56,10 @@ sequelize
     }
     return user;
 })
-// .then(user => {
-//     return user.createCart();
-// })
-// .then(cart => {
-//     app.listen(3000);
-// })
-.then(res =>{
+.then(user => {
+    return user.createCart();
+})
+.then(cart =>{
     app.listen(PORT,()=>{
         console.log(`Server is running on PORT: ${PORT}`)
     });
