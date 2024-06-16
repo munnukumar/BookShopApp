@@ -33,6 +33,15 @@ class User{
         const updatedCart = {items: updatedCartItems};
         const db = getDb();
         return db.collection('users').updateOne({_id: new ObjectId(this._id)}, {$set: {cart: updatedCart}});
+
+        // const updatedCart = {items: [{productId: new ObjectId(product._id), quantity: 1}]};
+        // const db = getDb();
+        // return db
+        //     .collection('users')
+        //     .updateOne(
+        //         {_id: new ObjectId(this._id)},
+        //         {$set:{cart: updatedCart}}
+        //     )
     }
 
     getCart(){
